@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def check_missing_values(df: "DataFrame"):
     """
@@ -57,3 +59,25 @@ def check_skweness_kurtosis(df: "DataFrame"):
     skeness_kurtosis_tbl = skewness.merge(kurtosis).sort_values(by = "Skweness", ascending = False).reset_index(drop = True)
 
     return skeness_kurtosis_tbl 
+
+
+
+def check_correlation(df: "DataFrame", plot: "bool" = True):
+    """
+    Returns a correlation table/vizualization for specified DataFrame
+   
+    Parameters
+    ----------
+    df : DataFrame
+    Object to check correlation.
+    plot : bool, default True
+    Return correlation vizulization if True, else a correlation table.
+    """
+
+    if plot == True:
+        plt.figure(figsize = (10, 6))
+        mask = np.triu(np.ones_like(df.corr()))
+        ax_corr = sns.heatmap(round(df.corr(), 2), annot = True, 
+                              cmap = "Greens", mask = mask)
+    else:
+        return round(df.corr(), 2)

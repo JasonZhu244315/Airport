@@ -4,15 +4,9 @@ import os
 
 url = "https://github.com/CapitalOneRecruiting/DA-Airline-Data-Challenge/raw/main/data.zip"
 
-def fetch_zip_file(url: "str"):
+def fetch_zip_file():
     """
     Download, unzip and extract files with url
-    
-    Parameters
-    ----------
-    url : str
-        Any valid string path is acceptable. The string could be a URL. Valid
-        URL schemes include http, ftp, s3, and file
     """
     # Try to acquire the zip file
     try:
@@ -32,7 +26,7 @@ def fetch_zip_file(url: "str"):
 
 def main():
     # Get the ZIP file
-    fetch_zip_file(url)
+    fetch_zip_file()
 
     # Unzip
     with zipfile.ZipFile("data/data.zip", "r") as zip_ref:

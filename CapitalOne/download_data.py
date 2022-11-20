@@ -26,7 +26,7 @@ def fetch_zip_file():
 
 def main():
     # Get the ZIP file
-    fetch_zip_file(url)
+    fetch_zip_file()
 
     # Unzip
     with zipfile.ZipFile("data/data.zip", "r") as zip_ref:
